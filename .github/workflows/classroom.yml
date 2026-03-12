@@ -1,0 +1,100 @@
+name: Autograding Tests
+
+on:
+  push:
+    branches: [ main, solution ]
+  workflow_dispatch:
+
+permissions:
+  checks: write
+  actions: read
+  contents: read
+
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    timeout-minutes: 15
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Jupyter Notebook (Python)
+      run: |
+        python -m pip install --upgrade pip
+        pip install jupyter nbconvert pandas numpy matplotlib seaborn scipy statsmodels opencv-python
+
+    - name: testtask1libraryimports
+      id: testtask1libraryimports
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "Test Task 1 - Library Imports"
+        command: python3 -c "import json; json.load(open('"ITAI1378 - Assignment 1.ipynb"'))"
+        timeout: 5
+        max-score: 14
+
+    - name: testtask2imagedownload
+      id: testtask2imagedownload
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "Test Task 2 - Image Download"
+        command: jupyter nbconvert --to notebook --execute ITAI1378 - Assignment 1.ipynb --stdout
+        timeout: 5
+        max-score: 14
+
+    - name: testtask3imageload
+      id: testtask3imageload
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "Test Task 3 - Image Load"
+        command: jupyter nbconvert --to notebook --execute ITAI1378 - Assignment 1.ipynb --stdout
+        timeout: 5
+        max-score: 14
+
+    - name: testtask4imagetypeandshape
+      id: testtask4imagetypeandshape
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "Test Task 4 - Image Type and Shape"
+        command: jupyter nbconvert --to notebook --execute ITAI1378 - Assignment 1.ipynb --stdout
+        timeout: 5
+        max-score: 14
+
+    - name: testtask5bgrtorgbconversion
+      id: testtask5bgrtorgbconversion
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "Test Task 5 - BGR to RGB Conversion"
+        command: python3 -c "import json; json.load(open('"ITAI1378 - Assignment 1.ipynb"'))"
+        timeout: 5
+        max-score: 14
+
+    - name: testtask6displayrgbimage
+      id: testtask6displayrgbimage
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "Test Task 6 - Display RGB Image"
+        command: python3 -c "import json; json.load(open('"ITAI1378 - Assignment 1.ipynb"'))"
+        timeout: 5
+        max-score: 14
+
+    - name: testtask7displayrgbchannelsseparately
+      id: testtask7displayrgbchannelsseparately
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "Test Task 7 - Display RGB Channels Separately"
+        command: python3 -c "import json; json.load(open('"ITAI1378 - Assignment 1.ipynb"'))"
+        timeout: 5
+        max-score: 16
+
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        TESTTASK1LIBRARYIMPORTS_RESULTS: "${{ steps.testtask1libraryimports.outputs.result }}"
+        TESTTASK2IMAGEDOWNLOAD_RESULTS: "${{ steps.testtask2imagedownload.outputs.result }}"
+        TESTTASK3IMAGELOAD_RESULTS: "${{ steps.testtask3imageload.outputs.result }}"
+        TESTTASK4IMAGETYPEANDSHAPE_RESULTS: "${{ steps.testtask4imagetypeandshape.outputs.result }}"
+        TESTTASK5BGRTORGBCONVERSION_RESULTS: "${{ steps.testtask5bgrtorgbconversion.outputs.result }}"
+        TESTTASK6DISPLAYRGBIMAGE_RESULTS: "${{ steps.testtask6displayrgbimage.outputs.result }}"
+        TESTTASK7DISPLAYRGBCHANNELSSEPARATELY_RESULTS: "${{ steps.testtask7displayrgbchannelsseparately.outputs.result }}"
+      with:
+        runners: testtask1libraryimports,testtask2imagedownload,testtask3imageload,testtask4imagetypeandshape,testtask5bgrtorgbconversion,testtask6displayrgbimage,testtask7displayrgbchannelsseparately

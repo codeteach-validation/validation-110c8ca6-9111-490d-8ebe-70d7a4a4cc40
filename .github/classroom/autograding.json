@@ -1,0 +1,74 @@
+{
+  "tests": [
+    {
+      "name": "Test Task 1 - Library Imports",
+      "run": "python3 -c \"import json; json.load(open('\"ITAI1378 - Assignment 1.ipynb\"'))\"",
+      "points": 14,
+      "input": "",
+      "output": "",
+      "setup": "",
+      "timeout": 5,
+      "comparison": "exit_code"
+    },
+    {
+      "name": "Test Task 2 - Image Download",
+      "run": "jupyter nbconvert --to notebook --execute ITAI1378 - Assignment 1.ipynb --stdout",
+      "points": 14,
+      "input": "",
+      "output": "Image downloaded and saved as fruits.jpg.",
+      "setup": "",
+      "timeout": 5,
+      "comparison": "included"
+    },
+    {
+      "name": "Test Task 3 - Image Load",
+      "run": "jupyter nbconvert --to notebook --execute ITAI1378 - Assignment 1.ipynb --stdout",
+      "points": 14,
+      "input": "",
+      "output": "Image loaded successfully.",
+      "setup": "",
+      "timeout": 5,
+      "comparison": "included"
+    },
+    {
+      "name": "Test Task 4 - Image Type and Shape",
+      "run": "jupyter nbconvert --to notebook --execute ITAI1378 - Assignment 1.ipynb --stdout",
+      "points": 14,
+      "input": "",
+      "output": "Type of the image: <class 'numpy.ndarray'>\nShape of the image:",
+      "setup": "",
+      "timeout": 5,
+      "comparison": "included"
+    },
+    {
+      "name": "Test Task 5 - BGR to RGB Conversion",
+      "run": "python3 -c \"import json; json.load(open('\"ITAI1378 - Assignment 1.ipynb\"'))\"",
+      "points": 14,
+      "input": "",
+      "output": "",
+      "setup": "",
+      "timeout": 5,
+      "comparison": "exit_code"
+    },
+    {
+      "name": "Test Task 6 - Display RGB Image",
+      "run": "python3 -c \"import json; json.load(open('\"ITAI1378 - Assignment 1.ipynb\"'))\"",
+      "points": 14,
+      "input": "",
+      "output": "",
+      "setup": "",
+      "timeout": 5,
+      "comparison": "exit_code"
+    },
+    {
+      "name": "Test Task 7 - Display RGB Channels Separately",
+      "run": "python3 -c \"import json; json.load(open('\"ITAI1378 - Assignment 1.ipynb\"'))\"",
+      "points": 16,
+      "input": "",
+      "output": "",
+      "setup": "",
+      "timeout": 5,
+      "comparison": "exit_code"
+    }
+  ]
+}
